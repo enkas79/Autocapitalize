@@ -1,8 +1,8 @@
 # Universal Auto Capitalize
 
-Estensione Chrome (Manifest V3) che mette in maiuscolo la prima lettera dopo `.` `?` `!` + spazio, dopo l'a capo e a inizio testo (campi multilinea), su qualsiasi sito. Nessun permesso, nessun dato raccolto.
+Chrome extension (Manifest V3) that capitalizes the first letter after `.` `?` `!` + space, after a new line, and at the start of the text (multiline fields), on any website. No permissions, no data collected.
 
-- Installazione sviluppo: `chrome://extensions` → Modalità sviluppatore → Carica estensione non pacchettizzata → questa cartella.
-- Icone: `python3 tools/make_icons.py`
-- Pacchetto per il Web Store: `tools/build.sh` → `dist/autocapitalize.zip`
-- Scheda store e permessi: `store/listing.md`
+- Development install: `chrome://extensions` → Developer mode → Load unpacked → this folder.
+- Icons: `python3 tools/make_icons.py`
+- Web Store package: `tools/build.sh` → `dist/autocapitalize.zip`
+- Store listing and permissions: `store/listing.en.md` (English), `store/listing.md` (Italian)

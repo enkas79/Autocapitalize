@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  // Elemento in cui la prossima lettera minuscola va maiuscolata.
+  // Element where the next lowercase letter must be capitalized.
   let armedEl = null;
-  // Dopo ".", "?" o "!" si attende lo spazio prima di armare il campo.
+  // After ".", "?" or "!" wait for a space before arming the field.
   let pendingSpaceEl = null;
   let lastKey = "";
 
@@ -22,8 +22,8 @@
     return el.tagName === "INPUT" && /^(text|search)$/i.test(el.type) && !el.readOnly;
   }
 
-  // Invio e inizio campo valgono solo per testo multilinea: in <input>
-  // l'Invio invia il modulo e il primo carattere può essere un nome utente/URL.
+  // Enter and start-of-field only apply to multiline text: in <input>
+  // Enter submits the form and the first character may be a username/URL.
   function isMultiline(el) {
     return el.isContentEditable || isTextarea(el);
   }
@@ -58,7 +58,7 @@
       pendingSpaceEl = null;
       armedEl = isMultiline(el) ? el : null;
     } else if (key === "." || key === "?" || key === "!") {
-      // "..." (puntini di sospensione) non chiude la frase.
+      // "..." (ellipsis) does not end the sentence.
       pendingSpaceEl = key === "." && prev === "." ? null : el;
       armedEl = null;
     } else if (key === " ") {
@@ -72,7 +72,7 @@
   document.addEventListener("beforeinput", (e) => {
     const el = targetOf(e);
     if (!el || e.inputType !== "insertText" || !e.data || e.data.length !== 1) return;
-    // Lo spazio che arma il campo non deve consumare lo stato.
+    // The space that arms the field must not consume the state.
     if (/\s/.test(e.data)) return;
 
     const startOfField = isMultiline(el) && isEmpty(el);
@@ -83,7 +83,7 @@
     if (upper === e.data || upper.length !== 1) return;
 
     e.preventDefault();
-    // execCommand mantiene lo stack undo e genera gli eventi nativi.
+    // execCommand preserves the undo stack and fires native events.
     if (document.execCommand("insertText", false, upper)) return;
     if (typeof el.selectionStart === "number") {
       el.setRangeText(upper, el.selectionStart, el.selectionEnd, "end");
@@ -91,7 +91,7 @@
     }
   }, true);
 
-  // Cambiando campo o con un click lo stato non deve "trascinarsi".
+  // Switching field or clicking must not carry the state over.
   document.addEventListener("focusin", reset, true);
   document.addEventListener("mousedown", reset, true);
 })();

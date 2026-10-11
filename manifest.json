@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Universal Auto Capitalize",
   "version": "1.2.0",
-  "description": "Maiuscola automatica dopo . ? ! e a capo, su qualsiasi sito. Nessun dato raccolto.",
+  "description": "Auto-capitalizes after . ? ! and new lines on any website. No data collected.",
   "minimum_chrome_version": "88",
   "icons": {
     "16": "icons/icon16.png",
